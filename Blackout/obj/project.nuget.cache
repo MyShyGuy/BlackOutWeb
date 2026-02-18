@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "evrQjCZwk4s=",
+  "dgSpecHash": "vUgaoNWGwmI=",
   "success": true,
   "projectFilePath": "C:\\Users\\matthias.schober\\OneDrive - uat.at\\Dokumente\\Lehre\\Schule_Klasse_4\\Informatik\\BlackOutWeb\\Blackout\\Blackout.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\matthias.schober\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.3\\microsoft.aspnetcore.app.internal.assets.10.0.3.nupkg.sha512"
+    "C:\\Users\\matthias.schober\\.nuget\\packages\\microsoft.aspnetcore.app.internal.assets\\10.0.3\\microsoft.aspnetcore.app.internal.assets.10.0.3.nupkg.sha512",
+    "C:\\Users\\matthias.schober\\.nuget\\packages\\microsoft.entityframeworkcore\\10.0.3\\microsoft.entityframeworkcore.10.0.3.nupkg.sha512",
+    "C:\\Users\\matthias.schober\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\10.0.3\\microsoft.entityframeworkcore.abstractions.10.0.3.nupkg.sha512",
+    "C:\\Users\\matthias.schober\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\10.0.3\\microsoft.entityframeworkcore.analyzers.10.0.3.nupkg.sha512"
   ],
   "logs": []
 }
