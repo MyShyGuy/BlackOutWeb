@@ -20,7 +20,8 @@ namespace Blackout.Models.Data
         [StringLength(10, MinimumLength = 1)]
         public required string UnitID { get; set; }
         // virtual for lazy loading
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Unit Unit { get; set; } = null!; // = null! to suppress nullable warning, because it will be loaded by EF
-        public virtual ICollection<Lot>? Lots { get; set; }
+        public virtual ICollection<Lot>? Lots { get; set; } = new List<Lot>();
     }
 }

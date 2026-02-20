@@ -21,7 +21,7 @@ namespace Blackout.Models.Data
         public decimal Size { get; set; }
         [MaxLength(50)]
         public required string Location { get; set; }
-
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         public virtual Product Product { get; set; } = null!; // = null! to suppress nullable warning, because it will be loaded by EF
     }
 }
