@@ -13,7 +13,7 @@ builder.Services.AddRazorComponents()
         ?? throw new InvalidOperationException("Connection string"
         + "'DefaultConnection' not found.");
 
-builder.Services.AddDbContext<AppDbContext>(options =>
+builder.Services.AddDbContextFactory<AppDbContext>(options =>
     options.UseSqlServer(connectionString));
 
 builder.Services.AddScoped<IBLService, BLService>(); //Interface und dann all die klassen welche von diesem interface abgeleitet werden, damit man die Methoden des Interfaces verwenden kann, ohne die konkrete Implementierung zu kennen, was die Flexibilität und Testbarkeit des Codes erhöht.   

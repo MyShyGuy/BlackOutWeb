@@ -4,4 +4,4 @@ global using Blackout.Models;
 global using Microsoft.EntityFrameworkCore;
 global using Blackout.Models.Data;
 global using Blackout.Models.Services;
-// global using Blackout.Models.DTO;
+global using Blackout.Models.DTO;

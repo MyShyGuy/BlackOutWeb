@@ -1,13 +1,15 @@
-@page  "/units/create"
+@page  "/units/edit/{UnitID}"
 @inject IBLService blService;
 @inject NavigationManager NavMan;
+@using Blackout.Models;
 @using Microsoft.IdentityModel.Tokens
+@using Microsoft.VisualBasic
 
 <h3>Create New Unit</h3>
 
 <div class="row">
     <div class="col-md-4">
-        <EditForm method="post" Model="@newUnit" OnValidSubmit="CreateUnit" FormName="createUnitForm">
+        <EditForm method="post" Model="@newUnit" OnValidSubmit="UpdateUnit" FormName="createUnitForm">
             <DataAnnotationsValidator />
             <ValidationSummary />
             @if(!errorMessage.IsNullOrEmpty())
@@ -19,7 +21,7 @@
 
             <div class="mb-3">
                 <label class="form-label">Unit ID</label>
-                <InputText class="form-control" @bind-Value="newUnit.UnitID" />
+                <InputText readonly class="form-control" @bind-Value="newUnit.UnitID" />
                 <ValidationMessage For="@(() => newUnit.UnitID)" />
             </div>
 
@@ -38,14 +40,38 @@
 
 @code {
     [Parameter]
-    public string? UnitID { get; set; } = string.Empty;
+    public string? UnitID { get; set; }
+    private string? oldUnitID; 
 
     [SupplyParameterFromForm]
-    public Unit newUnit { get; set; } = new Unit();
+    public Unit? newUnit { get; set; } = new Unit();
     public string errorMessage { get; set; } = string.Empty;
-    private async Task CreateUnit()
+    private async Task UpdateUnit()
     {
-        await blService.AddUnitAsync(newUnit);
+        await blService.UpdateUnitAsync(newUnit);
         NavMan.NavigateTo("/units/");
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        oldUnitID = UnitID;
+
+        if (!string.IsNullOrEmpty(UnitID))
+        {
+            Unit? unit = await blService.GetUnitByIdAsync(UnitID);
+
+            if (unit != null)
+            {
+                newUnit = unit;
+            }
+            else
+            {
+                errorMessage = "Unit not found.";
+            }
+        }
+        else
+        {
+            errorMessage = "Invalid Unit ID.";
+        }
     }
 }

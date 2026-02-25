@@ -15,8 +15,8 @@ namespace Blackout.Models.Data
         public required string Title { get; set; }
         [MaxLength(500)]
         public string? Notes { get; set; }
-        [MaxLength(200)]
-        public int EAN { get; set; }
+        [Range(0,9999999999999999999, ErrorMessage = "Nur Zahlen erlaubt")]
+        public long EAN { get; set; }
         [StringLength(10, MinimumLength = 1)]
         public required string UnitID { get; set; }
         // virtual for lazy loading

@@ -1,0 +1,91 @@
+@page "/lots/edit/{LotID:int}"
+@inject IBLService blService;
+@inject NavigationManager NavMan;
+@using Microsoft.IdentityModel.Tokens
+
+<h3>Edit Lot</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        @if (lot == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            <EditForm Model="@lot" OnValidSubmit="UpdateLot" FormName="editLotForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="mb-3">
+                    <label class="form-label">Lot ID</label>
+                    <InputNumber readonly class="form-control" @bind-Value="lot.LotID" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Product</label>
+                    <InputSelect class="form-control" @bind-Value="lot.ProductID">
+                        <option value="">Select Product</option>
+                        @if (Products != null)
+                        {
+                            @foreach (var product in Products)
+                            {
+                                <option value="@product.ProductID">@product.Title</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => lot.ProductID)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Expiry Date</label>
+                    <InputDate class="form-control" @bind-Value="lot.ExpiryDate" />
+                    <ValidationMessage For="@(() => lot.ExpiryDate)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Location</label>
+                    <InputText class="form-control" @bind-Value="lot.Location" />
+                    <ValidationMessage For="@(() => lot.Location)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Amount</label>
+                    <InputNumber class="form-control" @bind-Value="lot.Amount" />
+                    <ValidationMessage For="@(() => lot.Amount)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Size</label>
+                    <InputNumber class="form-control" @bind-Value="lot.Size" TValue="decimal" />
+                    <ValidationMessage For="@(() => lot.Size)" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int LotID { get; set; }
+
+    private Lot? lot;
+    private IEnumerable<Product>? Products;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        lot = await blService.GetLotByIdAsync(LotID);
+        Products = await blService.GetAllProductsAsync();
+    }
+
+    private async Task UpdateLot()
+    {
+        if (lot != null)
+        {
+            await blService.UpdateLotAsync(lot);
+            NavMan.NavigateTo("/lots");
+        }
+    }
+}

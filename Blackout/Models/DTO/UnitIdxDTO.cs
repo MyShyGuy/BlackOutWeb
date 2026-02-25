@@ -3,12 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Blackout.Models.Data
+namespace Blackout.Models.DTO
 {
-    public class Unit
+    public class UnitIdxDTO
     {
-        [Key]
-        [StringLength(10, MinimumLength = 1)]
         [Required(AllowEmptyStrings = false, ErrorMessage = "UnitID is required and cannot be empty.")]
         public string UnitID { get; set; } = null!;
         [StringLength(200)]

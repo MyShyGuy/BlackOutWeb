@@ -1,4 +1,55 @@
 @page "/units"
 @inject IBLService blService;
+@inject NavigationManager NavMan;
 
 <h3>Unit Overview</h3>
+<a href="/units/create" class="btn btn-primary mb-3">Create New Unit</a>
+
+@if (Units == null || Units.Count == 0)
+{
+    <p>No units found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Unit ID</th>
+                <th>Notes</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var unit in Units)
+            {
+                <tr>
+                    <td><p>@unit.UnitID</p></td>
+                    <td>@unit.Notes</td>
+                    <td><a href="/units/edit/@unit.UnitID" class="btn btn-secondary">Edit</a></td>
+                    @* <td><a @onclick="() => DeleteUnit(unit.UnitID)" class="btn btn-danger" >Delete</a></td> *@
+                    <td><a @onclick="@(() => NavMan.NavigateTo($"/delete/{unit.UnitID}"))" class="btn btn-danger" >Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    [Parameter]
+    public string? UnitId { get; set; } = string.Empty;
+
+    public List<Unit> Units { get; set; } = new List<Unit>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Units = await blService.GetAllUnitsAsync();
+    }
+
+    async Task DeleteUnit(string unitId)
+    {
+        await blService.DeleteUnitAsync(unitId);
+        Units = await blService.GetAllUnitsAsync();
+        StateHasChanged();
+    }
+}

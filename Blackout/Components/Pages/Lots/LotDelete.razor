@@ -1,0 +1,38 @@
+@page "/lots/delete/{LotID:int}"
+
+@inject IBLService blService
+@inject NavigationManager NavMan
+
+<h3>Delete Lot</h3>
+
+@if (lot == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Are you sure you want to delete lot with ID: @lot.LotID (Product: @lot.Product?.Title, Expiry Date: @lot.ExpiryDate.ToShortDateString())?</p>
+    <button class="btn btn-danger" @onclick="DeleteLot">Delete</button>
+    <button class="btn btn-secondary" @onclick="@(() => NavMan.NavigateTo("/lots"))">Cancel</button>
+}
+
+@code {
+    [Parameter]
+    public int LotID { get; set; }
+
+    private Lot? lot;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        lot = await blService.GetLotByIdAsync(LotID);
+    }
+
+    private async Task DeleteLot()
+    {
+        if (lot != null)
+        {
+            await blService.DeleteLotAsync(lot.LotID);
+            NavMan.NavigateTo("/lots");
+        }
+    }
+}

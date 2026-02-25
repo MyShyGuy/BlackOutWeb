@@ -1,0 +1,85 @@
+@page "/products/edit/{ProductID:int}"
+@inject IBLService blService;
+@inject NavigationManager NavMan;
+@using Microsoft.IdentityModel.Tokens
+
+<h3>Edit Product</h3>
+
+<div class="row">
+    <div class="col-md-4">
+        @if (product == null)
+        {
+            <p>Loading...</p>
+        }
+        else
+        {
+            <EditForm Model="@product" OnValidSubmit="UpdateProduct" FormName="editProductForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+
+                <div class="mb-3">
+                    <label class="form-label">Product ID</label>
+                    <InputNumber readonly class="form-control" @bind-Value="product.ProductID" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Title</label>
+                    <InputText class="form-control" @bind-Value="product.Title" />
+                    <ValidationMessage For="@(() => product.Title)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Notes</label>
+                    <InputText class="form-control" @bind-Value="product.Notes" />
+                    <ValidationMessage For="@(() => product.Notes)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">EAN</label>
+                    <InputNumber class="form-control" @bind-Value="product.EAN" />
+                    <ValidationMessage For="@(() => product.EAN)" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Unit</label>
+                    <InputSelect class="form-control" @bind-Value="product.UnitID">
+                        <option value="">Select Unit</option>
+                        @if (Units != null)
+                        {
+                            @foreach (var u in Units)
+                            {
+                                <option value="@u.UnitID">@u.UnitID</option>
+                            }
+                        }
+                    </InputSelect>
+                    <ValidationMessage For="@(() => product.UnitID)" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </EditForm>
+        }
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public int ProductID { get; set; }
+
+    private Product? product;
+    private IEnumerable<UnitIdxDTO>? Units;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await blService.GetProductByIdAsync(ProductID);
+        Units = await blService.GetAllUnitsIdx();
+    }
+
+    private async Task UpdateProduct()
+    {
+        if (product != null)
+        {
+            await blService.UpdateProductAsync(product);
+            NavMan.NavigateTo("/products");
+        }
+    }
+}

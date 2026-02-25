@@ -1,0 +1,42 @@
+@page "/delete/{UnitId}"
+
+@inject IBLService blService
+@inject NavigationManager NavMan
+
+<h3>Delete Unit</h3>
+
+@if (unit == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Are you sure you want to delete unit with ID: @unit.UnitID?</p>
+    <button class="btn btn-danger" @onclick="DeleteUnit">Delete</button>
+    <button class="btn btn-secondary" @onclick="@(() => NavMan.NavigateTo("/units"))">Cancel</button>
+}
+
+@code
+{
+    [Parameter]
+    public string? UnitId { get; set; }
+
+    private Unit? unit;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (UnitId != null)
+        {
+            unit = await blService.GetUnitByIdAsync(UnitId);
+        }
+    }
+
+    private async Task DeleteUnit()
+    {
+        if (unit != null)
+        {
+            await blService.DeleteUnitAsync(unit.UnitID);
+            NavMan.NavigateTo("/units");
+        }
+    }
+}

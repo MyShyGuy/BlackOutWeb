@@ -1,0 +1,79 @@
+@page "/lots/create"
+@* @using Microsoft.IdentityModel.Tokens *@
+
+@inject IBLService bLService;
+@inject NavigationManager NavMan;
+
+
+<h3>Create new Lot</h3>
+@if(products == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+<div class="row">
+    <div class="col-md-4">
+            <EditForm Model="newLot" OnValidSubmit="CreateLot" >
+                <DataAnnotationsValidator/>
+                <ValidationSummary/>
+
+                    <div class="mb-3">
+                        <label class="form-label">Product</label>
+                        <InputSelect class="form-control" @bind-Value="newLot.ProductID" >
+                            <option value="">Select Product</option>
+                            @foreach(var prod in products)
+                            {
+                                <option value="@prod.ProductID">@prod.Title</option>
+                            }
+                            </InputSelect>
+                        <ValidationMessage For="@(() => newLot.ProductID)" />          
+                    </div>
+                    <div class="mb-3">
+                        <label for="form-label">Expiry Date</label>
+                        <InputDate class="form-control" @bind-Value="newLot.ExpiryDate" />
+                        <ValidationMessage For="@(() => newLot.ExpiryDate)" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Location</label>
+                        <InputText class="form-control" @bind-Value="newLot.Location" />
+                        <ValidationMessage For="@(() => newLot.Location)" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Amount</label>
+                        <InputNumber class="form-control" @bind-Value="newLot.Amount" />
+                        <ValidationMessage For="@(() => newLot.Amount)" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Size</label>
+                        <InputNumber class="form-control" @bind-Value="newLot.Size" TValue="decimal" />
+                        <ValidationMessage For="@(() => newLot.Size)" />
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+            </EditForm>
+    </div>
+</div>
+}
+
+@code
+{
+    [SupplyParameterFromForm]
+    public List<Product> products {get; set;} = null!;    
+
+    public LotDTO newLot {get; set;} = new LotDTO(){
+        ProductID = 0,
+        Amount = 0,
+        Location = string.Empty,
+        EntryDate = DateTime.Now
+    };
+    private async Task CreateLot(EditContext args)
+    {
+        await bLService.AddLotAsync(newLot);
+        NavMan.NavigateTo("/lots"); 
+    }
+
+        protected async override Task OnInitializedAsync()
+    {
+        products = (await bLService.GetAllProductsAsync()).ToList();
+    }
+}

@@ -46,12 +46,52 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Lots/LotCreate.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb3RzXExvdENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Lots/LotDelete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb3RzXExvdERlbGV0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Lots/LotEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb3RzXExvdEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Lots/LotIdx.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xMb3RzXExvdElkeC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/NotFound.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xOb3RGb3VuZC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Products/ProductCreate.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9kdWN0c1xQcm9kdWN0Q3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Products/ProductDelete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9kdWN0c1xQcm9kdWN0RGVsZXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Products/ProductEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9kdWN0c1xQcm9kdWN0RWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Products/ProductIdx.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9kdWN0c1xQcm9kdWN0SWR4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitCreate.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVbml0c1xVbml0Q3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitDelete.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVbml0c1xVbml0RGVsZXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVbml0c1xVbml0RWRpdC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitIdx.razor]

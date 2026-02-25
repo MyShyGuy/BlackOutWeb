@@ -1,0 +1,59 @@
+@page "/lots"
+@inject IBLService blService;
+@inject NavigationManager NavMan;
+
+<h3>Lot Overview</h3>
+<a href="/lots/create" class="btn btn-primary mb-3">Create New Lot</a>
+
+@if (Lots == null || Lots.Count == 0)
+{
+    <p>No lots found.</p>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product</th>
+                <th>Expiry Date</th>
+                <th>Location</th>
+                <th>Amount</th>
+                <th>Size</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var lot in Lots)
+            {
+                <tr>
+                    <td>@lot.LotID</td>
+                    <td>@lot.Product?.Title</td>
+                    <td>@lot.ExpiryDate.ToShortDateString()</td>
+                    <td>@lot.Location</td>
+                    <td>@lot.Amount</td>
+                    <td>@lot.Size</td>
+                    <td><a href="/lots/edit/@lot.LotID" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="#" @onclick="@(() => NavMan.NavigateTo($"/lots/delete/{lot.LotID}"))" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    public List<Lot> Lots { get; set; } = new List<Lot>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Lots = await blService.GetAllLotsAsync();
+    }
+
+    async Task DeleteLot(int id)
+    {
+        await blService.DeleteLotAsync(id);
+        Lots = await blService.GetAllLotsAsync();
+        StateHasChanged();
+    }
+}

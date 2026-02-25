@@ -1,0 +1,76 @@
+@page "/products/create"
+@using Microsoft.IdentityModel.Tokens
+
+@inject IBLService blService;
+@inject NavigationManager NavMan;
+
+<h3>Create New Product</h3>
+<div class="row">
+    <div class="col-md-4">
+        @if(Units == null)
+        {
+            <p><em>Loading...</em></p>
+        }
+        else
+        {
+            <EditForm Model="@newProduct" OnValidSubmit="CreateProduct" FormName="createProductForm">
+                <DataAnnotationsValidator />
+                <ValidationSummary />
+                    <div class="mb-3">
+                        <label class="form-label">Product</label>
+                        <InputText class="form-control" @bind-Value="newProduct.Title" />
+                        <ValidationMessage For="@(() => newProduct.Title)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Notes</label>
+                        <InputText class="form-control" @bind-Value="newProduct.Notes" />
+                        <ValidationMessage For="@(() => newProduct.Notes)" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">EAN</label>
+                        <InputNumber class="form-control" @bind-Value="newProduct.EAN" />
+                        <ValidationMessage For="@(() => newProduct.EAN)" />
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Unit</label>
+                        <InputSelect class="form-control" @bind-Value="newProduct.UnitID" >
+                            <option value="">Select Unit</option>
+                            @foreach(var unit in Units)
+                            {
+                                <option value="@unit.UnitID">@unit.UnitID</option>
+                            }
+                            </InputSelect>
+                        <ValidationMessage For="@(() => newProduct.UnitID)" />          
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>               
+            </EditForm>
+        }
+    </div>
+</div>
+
+
+@code{
+    [Parameter]
+    public int? ProductID { get; set; }
+    public List<UnitIdxDTO>? Units { get; set; }
+
+    [SupplyParameterFromForm]
+    public ProductDTO newProduct { get; set; } = new ProductDTO(){
+        Title = string.Empty,
+        UnitID = string.Empty
+    };
+    private async Task CreateProduct()
+    {
+        await blService.AddnewProductAsync(newProduct);
+        NavMan.NavigateTo("/products");
+    }
+
+    protected async override Task OnInitializedAsync()
+    {
+        Units = (await blService.GetAllUnitsIdx()).ToList();
+    }
+
+
+}

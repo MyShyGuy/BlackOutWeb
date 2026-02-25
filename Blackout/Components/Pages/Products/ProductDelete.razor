@@ -1,0 +1,38 @@
+@page "/products/delete/{ProductID:int}"
+
+@inject IBLService blService
+@inject NavigationManager NavMan
+
+<h3>Delete Product</h3>
+
+@if (product == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <p>Are you sure you want to delete product with ID: @product.ProductID and title: @product.Title?</p>
+    <button class="btn btn-danger" @onclick="DeleteProduct">Delete</button>
+    <button class="btn btn-secondary" @onclick="@(() => NavMan.NavigateTo("/products"))">Cancel</button>
+}
+
+@code {
+    [Parameter]
+    public int ProductID { get; set; }
+
+    private Product? product;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        product = await blService.GetProductByIdAsync(ProductID);
+    }
+
+    private async Task DeleteProduct()
+    {
+        if (product != null)
+        {
+            await blService.DeleteProductAsync(product.ProductID);
+            NavMan.NavigateTo("/products");
+        }
+    }
+}
