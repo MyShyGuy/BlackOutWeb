@@ -20,6 +20,7 @@ else
                 <th>Location</th>
                 <th>Amount</th>
                 <th>Size</th>
+                <th>Unit</th>
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
@@ -34,6 +35,7 @@ else
                     <td>@lot.Location</td>
                     <td>@lot.Amount</td>
                     <td>@lot.Size</td>
+                    <td>@lot.Product?.Unit?.UnitID</td>
                     <td><a href="/lots/edit/@lot.LotID" class="btn btn-secondary">Edit</a></td>
                     <td><a href="#" @onclick="@(() => NavMan.NavigateTo($"/lots/delete/{lot.LotID}"))" class="btn btn-danger">Delete</a></td>
                 </tr>

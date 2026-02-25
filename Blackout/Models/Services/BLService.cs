@@ -103,7 +103,7 @@ namespace Blackout.Models.Services
         public async Task<List<Lot>> GetAllLotsAsync()
         {
             using var dbc = await contextFactory.CreateDbContextAsync();
-            return await dbc.Lots.Include(x => x.Product).ToListAsync();
+            return await dbc.Lots.Include(x => x.Product).ThenInclude(x => x.Unit).ToListAsync();
         }
 
         public async Task<List<Product>> GetAllProductsAsync()

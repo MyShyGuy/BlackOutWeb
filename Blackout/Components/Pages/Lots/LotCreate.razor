@@ -20,8 +20,8 @@ else
 
                     <div class="mb-3">
                         <label class="form-label">Product</label>
-                        <InputSelect class="form-control" @bind-Value="newLot.ProductID" >
-                            <option value="">Select Product</option>
+                        <InputSelect class="form-control" Value="newLot.ProductID" ValueChanged="@((int value) => UpdateProductAndUnit(value))" ValueExpression="@(() => newLot.ProductID)">
+                            <option value="0">Select Product</option>
                             @foreach(var prod in products)
                             {
                                 <option value="@prod.ProductID">@prod.Title</option>
@@ -46,7 +46,13 @@ else
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Size</label>
-                        <InputNumber class="form-control" @bind-Value="newLot.Size" TValue="decimal" />
+                        <div class="input-group">
+                            <InputNumber class="form-control" @bind-Value="newLot.Size" TValue="decimal" />
+                            @if (!string.IsNullOrEmpty(selectedUnit))
+                            {
+                                <span class="input-group-text">@selectedUnit</span>
+                            }
+                        </div>
                         <ValidationMessage For="@(() => newLot.Size)" />
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
@@ -57,22 +63,42 @@ else
 
 @code
 {
-    [SupplyParameterFromForm]
-    public List<Product> products {get; set;} = null!;    
+    public List<Product> products {get; set;} = new List<Product>();
 
+    [SupplyParameterFromForm]
     public LotDTO newLot {get; set;} = new LotDTO(){
         ProductID = 0,
         Amount = 0,
         Location = string.Empty,
         EntryDate = DateTime.Now
     };
+
+    private string selectedUnit = string.Empty;
+
+    private async Task UpdateProductAndUnit(int productId)
+    {
+        newLot.ProductID = productId;
+
+        if (productId > 0)
+        {
+            var selectedProduct = products.FirstOrDefault(p => p.ProductID == productId);
+            selectedUnit = selectedProduct?.Unit?.UnitID ?? string.Empty;
+        }
+        else
+        {
+            selectedUnit = string.Empty;
+        }
+        
+        StateHasChanged();
+    }
+
     private async Task CreateLot(EditContext args)
     {
         await bLService.AddLotAsync(newLot);
         NavMan.NavigateTo("/lots"); 
     }
 
-        protected async override Task OnInitializedAsync()
+    protected async override Task OnInitializedAsync()
     {
         products = (await bLService.GetAllProductsAsync()).ToList();
     }
