@@ -9,28 +9,28 @@
 
 <div class="dashboard-tiles row mb-4">
     <div class="col-md-4">
-        <div class="card text-center">
+        <a href="/products" class="card card-link card-primary text-center text-decoration-none">
             <div class="card-body">
                 <h5 class="card-title">Produkte gesamt im Lager</h5>
                 <p class="card-text display-6">@totalProducts</p>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-md-4">
-        <div class="card text-center">
+        <a href="/lots" class="card card-link card-success text-center text-decoration-none">
             <div class="card-body">
                 <h5 class="card-title">Anzahl Lots</h5>
                 <p class="card-text display-6">@totalLots</p>
             </div>
-        </div>
+        </a>
     </div>
     <div class="col-md-4">
-        <div class="card text-center">
+        <a href="/lots" class="card card-link card-warning text-center text-decoration-none">
             <div class="card-body">
                 <h5 class="card-title">Bald ablaufende Lots (@expiringSoon.Count())</h5>
                 <p class="card-text">Innerhalb der nächsten @expiringDays Tagen</p>
             </div>
-        </div>
+        </a>
     </div>
 </div>
 
@@ -52,7 +52,7 @@
                 <tbody>
                     @foreach (var l in expired)
                     {
-                        <tr>
+                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -83,7 +83,7 @@
                 <tbody>
                     @foreach (var l in expiringSoon)
                     {
-                        <tr>
+                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -114,7 +114,7 @@
                 <tbody>
                     @foreach (var l in longTerm)
                     {
-                        <tr>
+                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -128,12 +128,52 @@
 }
 
 <style>
-    .dashboard-tiles .card { min-height: 110px; display:flex; align-items:center; justify-content:center; }
-    .dashboard-tiles .card .display-6 { margin:0; }
+    .dashboard-tiles .card-link { 
+        min-height: 110px; 
+        display:flex; 
+        align-items:center; 
+        justify-content:center;
+        transition: all 0.3s ease;
+        border: none;
+        color: white !important;
+        font-weight: 600;
+    }
+    
+    .dashboard-tiles .card-primary {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    }
+    
+    .dashboard-tiles .card-success {
+        background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+    }
+    
+    .dashboard-tiles .card-warning {
+        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+        color: #333 !important;
+    }
+    
+    .dashboard-tiles .card-link:hover {
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        filter: brightness(1.1);
+    }
+    
+    .dashboard-tiles .card-link .display-6 { margin:0; }
     .card-header { font-weight:600; }
+    
+    .table-row-link {
+        cursor: pointer;
+        transition: all 0.15s ease;
+    }
+    .table-row-link:hover {
+        background-color: #d1ecf1 !important;
+        font-weight: 500;
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+    
     @@media (min-width: 768px) {
         .dashboard-tiles .col-md-4 { display:flex; }
-        .dashboard-tiles .col-md-4 .card { flex:1; }
+        .dashboard-tiles .col-md-4 .card-link { flex:1; }
     }
 </style>
 
@@ -146,6 +186,11 @@
     private int totalProducts = 0;
     private int totalLots = 0;
     private int expiringDays = 7;
+
+    private void NavigateToEditLot(int lotId)
+    {
+        NavMan.NavigateTo($"/lots/{lotId}");
+    }
 
     protected override async Task OnInitializedAsync()
     {
