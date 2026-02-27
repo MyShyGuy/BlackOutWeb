@@ -1,4 +1,5 @@
 @page "/products"
+@page "/products/{ProductId:int}"
 @using Blackout.Components.Pages.Components
 @inject IBLService blService;
 @inject NavigationManager NavMan;
@@ -6,10 +7,13 @@
 <h3>Product Overview</h3>
 <a href="/products/create" class="btn btn-primary mb-3">Create New Product</a>
 
-    <ProductList Products="Products" />
+    <ProductList Products="Products" ProductId="ProductId" />
 
 @code {
     public List<Product> Products { get; set; } = new List<Product>();
+    
+    [Parameter]
+    public int? ProductId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

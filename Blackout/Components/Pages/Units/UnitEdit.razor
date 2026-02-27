@@ -49,7 +49,7 @@
     private async Task UpdateUnit()
     {
         await blService.UpdateUnitAsync(newUnit);
-        NavMan.NavigateTo("/units/");
+        NavMan.NavigateTo("/units/" + newUnit.UnitID);
     }
 
     protected override async Task OnParametersSetAsync()

@@ -85,7 +85,7 @@
         if (lot != null)
         {
             await blService.UpdateLotAsync(lot);
-            NavMan.NavigateTo("/lots");
+            NavMan.NavigateTo("/lots/"+$"{lot.LotID}");
         }
     }
 }

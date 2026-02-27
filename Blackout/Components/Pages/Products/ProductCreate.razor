@@ -63,8 +63,8 @@
     };
     private async Task CreateProduct()
     {
-        await blService.AddnewProductAsync(newProduct);
-        NavMan.NavigateTo("/products");
+       var id = await blService.AddnewProductAsync(newProduct);
+        NavMan.NavigateTo("/products/" + id);
     }
 
     protected async override Task OnInitializedAsync()

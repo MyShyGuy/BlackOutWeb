@@ -46,6 +46,6 @@
     private async Task CreateUnit()
     {
         await blService.AddUnitAsync(newUnit);
-        NavMan.NavigateTo("/units/");
+        NavMan.NavigateTo("/units/" + newUnit.UnitID);
     }
 }

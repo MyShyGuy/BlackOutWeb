@@ -1,4 +1,5 @@
 @page "/units"
+@page "/units/{UnitId}"
 @inject IBLService blService;
 @inject NavigationManager NavMan;
 
@@ -23,7 +24,7 @@ else
         <tbody>
             @foreach (var unit in Units)
             {
-                <tr>
+                <tr class="@(UnitId == unit.UnitID ? "table-primary" : "")">
                     <td><p>@unit.UnitID</p></td>
                     <td>@unit.Notes</td>
                     <td><a href="/units/edit/@unit.UnitID" class="btn btn-secondary">Edit</a></td>
@@ -37,7 +38,7 @@ else
 
 @code {
     [Parameter]
-    public string? UnitId { get; set; } = string.Empty;
+    public string? UnitId { get; set; }
 
     public List<Unit> Units { get; set; } = new List<Unit>();
 

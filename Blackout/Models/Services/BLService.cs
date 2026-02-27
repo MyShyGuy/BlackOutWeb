@@ -17,7 +17,7 @@ namespace Blackout.Models.Services
         //     dbc = context;
         // }
 
-        public async Task AddLotAsync(LotDTO lot)
+        public async Task<int> AddLotAsync(LotDTO lot)
         {
             var newlot = new Lot
             {
@@ -32,10 +32,11 @@ namespace Blackout.Models.Services
 
             using var dbc = await contextFactory.CreateDbContextAsync();
             dbc.Lots.Add(newlot);
-            dbc.SaveChanges();
+            await dbc.SaveChangesAsync();
+            return newlot.LotID;
         }
 
-        public async Task AddnewProductAsync(ProductDTO product)
+        public async Task<int> AddnewProductAsync(ProductDTO product)
         {
             using var dbc = await contextFactory.CreateDbContextAsync();
             Product newProduct = new Product
@@ -48,6 +49,7 @@ namespace Blackout.Models.Services
             };
             dbc.Products.Add(newProduct);
             dbc.SaveChanges();
+            return newProduct.ProductID;
         }
 
         public async Task AddProductAsync(Product product)

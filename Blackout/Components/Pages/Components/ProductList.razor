@@ -21,7 +21,7 @@ else
         <tbody>
             @foreach (var product in Products)
             {
-                <tr>
+                <tr class="@(ProductId == product.ProductID ? "table-primary" : "")">
                     <td>@product.ProductID</td>
                     <td>@product.Title</td>
                     <td>@product.EAN</td>
@@ -37,4 +37,6 @@ else
 @code {
     [Parameter]
     public List<Product> Products { get; set; } = new List<Product>();
+    [Parameter]
+    public int? ProductId { get; set; }
 }

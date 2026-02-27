@@ -1,4 +1,5 @@
 @page "/lots"
+@page "/lots/{LotId:int}"
 @inject IBLService blService;
 @inject NavigationManager NavMan;
 
@@ -28,7 +29,7 @@ else
         <tbody>
             @foreach (var lot in Lots)
             {
-                <tr>
+                <tr class="@(LotId == lot.LotID ? "table-primary" : "")">
                     <td>@lot.LotID</td>
                     <td>@lot.Product?.Title</td>
                     <td>@lot.ExpiryDate.ToShortDateString()</td>
@@ -46,6 +47,9 @@ else
 
 @code {
     public List<Lot> Lots { get; set; } = new List<Lot>();
+    
+    [Parameter]
+    public int? LotId { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

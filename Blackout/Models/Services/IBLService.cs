@@ -11,14 +11,14 @@ namespace Blackout.Models.Services
         Task<List<Product>> GetAllProductsAsync();
         Task<Product?> GetProductByIdAsync(int id); 
         Task<Product?> GetProductByEANAsync(int ean);
-        Task AddnewProductAsync(ProductDTO product);
+        Task<int> AddnewProductAsync(ProductDTO product);
         Task AddProductAsync(Product product);
         Task UpdateProductAsync(Product product);
         Task DeleteProductAsync(int id);
 
         Task<List<Lot>> GetAllLotsAsync();
         Task<Lot?> GetLotByIdAsync(int id);
-        Task AddLotAsync(LotDTO lot);
+        Task<int> AddLotAsync(LotDTO lot);
         Task UpdateLotAsync(Lot lot);
         Task DeleteLotAsync(int id);
 

@@ -1,5 +1,4 @@
 @page "/lots/create"
-@* @using Microsoft.IdentityModel.Tokens *@
 
 @inject IBLService bLService;
 @inject NavigationManager NavMan;
@@ -95,8 +94,8 @@ else
 
     private async Task CreateLot(EditContext args)
     {
-        await bLService.AddLotAsync(newLot);
-        NavMan.NavigateTo("/lots"); 
+        var id = await bLService.AddLotAsync(newLot);
+        NavMan.NavigateTo($"/lots/{id}");
     }
 
     protected async override Task OnInitializedAsync()

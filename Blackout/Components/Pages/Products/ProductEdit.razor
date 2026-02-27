@@ -79,7 +79,7 @@
         if (product != null)
         {
             await blService.UpdateProductAsync(product);
-            NavMan.NavigateTo("/products");
+            NavMan.NavigateTo("/products" + $"/{product.ProductID}");
         }
     }
 }
