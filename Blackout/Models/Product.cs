@@ -15,7 +15,7 @@ namespace Blackout.Models.Data
         public required string Title { get; set; }
         [MaxLength(500)]
         public string? Notes { get; set; }
-        [Range(0,9999999999999999999, ErrorMessage = "Nur Zahlen erlaubt")]
+        [Range(0,9999999999999999999, ErrorMessage = "Numbers only allowed")]
         public long EAN { get; set; }
         [StringLength(10, MinimumLength = 1)]
         public required string UnitID { get; set; }

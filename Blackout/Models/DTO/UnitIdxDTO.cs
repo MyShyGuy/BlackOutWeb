@@ -5,6 +5,10 @@ using System.Threading.Tasks;
 
 namespace Blackout.Models.DTO
 {
+    /// <summary>
+    /// Minimal information about a unit used for index/list pages.
+    /// Includes the UnitID and optional notes, plus navigation to associated products.
+    /// </summary>
     public class UnitIdxDTO
     {
         [Required(AllowEmptyStrings = false, ErrorMessage = "UnitID is required and cannot be empty.")]

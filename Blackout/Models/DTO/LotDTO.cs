@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Blackout.Models.DTO
 {
+    /// <summary>
+    /// Data transfer object for a lot.  Used by the UI when creating or editing lots.
+    /// Contains only the properties the client needs, and validation attributes.
+    /// </summary>
     public class LotDTO
     {
         public int LotID { get; set; }
         public required int ProductID { get; set; }
-        [FutureOrEmpty(ErrorMessage = "Das Ablaufdatum muss entweder leer sein oder mindestens heute oder in der Zukunft liegen.")]
+        [FutureOrEmpty(ErrorMessage = "Expiry date must be empty or today or in the future.")]
         public DateTime ExpiryDate { get; set; }
         public DateTime EntryDate { get; set; }
         [Range(1, int.MaxValue)]
@@ -22,16 +26,16 @@ namespace Blackout.Models.DTO
         public required string Location { get; set; }
     }
 
-    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)] // eigene DataAnotations sind möglich, siehe https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute?view=net-8.0
+    [AttributeUsage(AttributeTargets.Property | AttributeTargets.Field, AllowMultiple = false)] // custom validation attribute; see https://learn.microsoft.com/en-us/dotnet/api/system.componentmodel.dataannotations.validationattribute?view=net-8.0
     public class FutureOrEmptyAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {
-            if (value == null) return true; // Leere Werte sind erlaubt
+            if (value == null) return true; // empty values are permitted
 
             if (value is DateTime dateTime)
             {
-                return dateTime >= DateTime.Today; // Datum muss heute oder in der Zukunft liegen
+                return dateTime >= DateTime.Today; // date must be today or in the future
             }
 
             return false;
@@ -39,7 +43,7 @@ namespace Blackout.Models.DTO
 
         public override string FormatErrorMessage(string name)
         {
-            return $"{name} muss entweder leer sein oder mindestens heute oder in der Zukunft liegen.";
+            return $"{name} must be empty or today or a future date.";
         }
     }   
 }

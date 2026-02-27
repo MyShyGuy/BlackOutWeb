@@ -16,7 +16,7 @@ namespace Blackout.Models.Data
         public DbSet<Lot> Lots { get; set; } = null!;
         public DbSet<Unit> Units { get; set; } = null!;
 
-        //DBSet erstellen context für die Models und Tabellen in der DB
+        // DbSets: define context for models and corresponding database tables
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

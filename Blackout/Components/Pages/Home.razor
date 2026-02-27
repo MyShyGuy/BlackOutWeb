@@ -1,17 +1,17 @@
-﻿@page "/"
+@page "/"
 
 @inject IBLService blService;
 @inject NavigationManager NavMan;
 
 <PageTitle>Home</PageTitle>
 
-<h1>Übersicht</h1>
+<h1>Dashboard</h1>
 
 <div class="dashboard-tiles row mb-4">
     <div class="col-md-4">
         <a href="/products" class="card card-link card-primary text-center text-decoration-none">
             <div class="card-body">
-                <h5 class="card-title">Produkte gesamt im Lager</h5>
+                <h5 class="card-title">Total Products in Inventory</h5>
                 <p class="card-text display-6">@totalProducts</p>
             </div>
         </a>
@@ -19,7 +19,7 @@
     <div class="col-md-4">
         <a href="/lots" class="card card-link card-success text-center text-decoration-none">
             <div class="card-body">
-                <h5 class="card-title">Anzahl Lots</h5>
+                <h5 class="card-title">Number of Lots</h5>
                 <p class="card-text display-6">@totalLots</p>
             </div>
         </a>
@@ -27,8 +27,8 @@
     <div class="col-md-4">
         <a href="/lots" class="card card-link card-warning text-center text-decoration-none">
             <div class="card-body">
-                <h5 class="card-title">Bald ablaufende Lots (@expiringSoon.Count())</h5>
-                <p class="card-text">Innerhalb der nächsten @expiringDays Tagen</p>
+                <h5 class="card-title">Expiring Lots (@expiringSoon.Count())</h5>
+                <p class="card-text">Innerhalb der n�chsten @expiringDays Tagen</p>
             </div>
         </a>
     </div>
@@ -38,15 +38,15 @@
 @if (expired.Any())
 {
     <div class="card mb-3 bg-danger text-white">
-        <div class="card-header">Abgelaufene Lots (@expired.Count())</div>
+        <div class="card-header">Expired Lots (@expired.Count())</div>
         <div class="card-body p-0">
             <table class="table mb-0 table-sm table-striped table-dark">
                 <thead>
                     <tr>
                         <th>LotID</th>
-                        <th>Produkt</th>
+                        <th>Product</th>
                         <th>Ablaufdatum</th>
-                        <th>Menge</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -69,15 +69,15 @@
 @if (expiringSoon.Any())
 {
     <div class="card mb-3" style="background-color:#fff3cd;">
-        <div class="card-header">Bald ablaufende Lots (@expiringSoon.Count())</div>
+        <div class="card-header">Lots Expiring Soon (@expiringSoon.Count())</div>
         <div class="card-body p-0">
             <table class="table mb-0 table-sm">
                 <thead>
                     <tr>
                         <th>LotID</th>
-                        <th>Produkt</th>
-                        <th>Ablaufdatum</th>
-                        <th>Menge</th>
+                        <th>Product</th>
+                        <th>Expiry Date</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -100,15 +100,15 @@
 @if (longTerm.Any())
 {
     <div class="card mb-3 bg-success text-white">
-        <div class="card-header">Lots mit langer Laufzeit (@longTerm.Count())</div>
+        <div class="card-header">Long Term Lots (@longTerm.Count())</div>
         <div class="card-body p-0">
             <table class="table mb-0 table-sm table-striped table-dark">
                 <thead>
                     <tr>
                         <th>LotID</th>
-                        <th>Produkt</th>
-                        <th>Ablaufdatum</th>
-                        <th>Menge</th>
+                        <th>Product</th>
+                        <th>Expiry Date</th>
+                        <th>Quantity</th>
                     </tr>
                 </thead>
                 <tbody>
