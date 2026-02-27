@@ -11,8 +11,12 @@
 }
 else
 {
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
     <p>Are you sure you want to delete unit with ID: @unit.UnitID?</p>
-    <button class="btn btn-danger" @onclick="DeleteUnit">Delete</button>
+    <button class="btn btn-danger" @onclick="DeleteUnit" disabled="@(referencingProducts != null && referencingProducts.Count > 0)">Delete</button>
     <button class="btn btn-secondary" @onclick="@(() => NavMan.NavigateTo("/units"))">Cancel</button>
 }
 
@@ -22,12 +26,21 @@ else
     public string? UnitId { get; set; }
 
     private Unit? unit;
+    private List<Product>? referencingProducts;
+    private string? errorMessage;
 
     protected override async Task OnParametersSetAsync()
     {
         if (UnitId != null)
         {
             unit = await blService.GetUnitByIdAsync(UnitId);
+            // find products that reference this unit
+            var allProducts = await blService.GetAllProductsAsync();
+            referencingProducts = allProducts.Where(p => p.UnitID == UnitId).ToList();
+            if (referencingProducts != null && referencingProducts.Count > 0)
+            {
+                errorMessage = $"Cannot delete unit because {referencingProducts.Count} product(s) reference it. Delete or reassign those products first.";
+            }
         }
     }
 
@@ -35,8 +48,15 @@ else
     {
         if (unit != null)
         {
-            await blService.DeleteUnitAsync(unit.UnitID);
-            NavMan.NavigateTo("/units");
+            if (referencingProducts == null || referencingProducts.Count == 0)
+            {
+                await blService.DeleteUnitAsync(unit.UnitID);
+                NavMan.NavigateTo("/units");
+            }
+            else
+            {
+                errorMessage = "Cannot delete unit because there are products using it. Please remove those products first.";
+            }
         }
     }
 }

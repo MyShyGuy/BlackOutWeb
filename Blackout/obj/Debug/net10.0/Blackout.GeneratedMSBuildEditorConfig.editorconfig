@@ -34,8 +34,8 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xBcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Counter.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb3VudGVyLnJhem9y
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Components/ProductList.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb21wb25lbnRzXFByb2R1Y3RMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Error.razor]
@@ -96,10 +96,6 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitIdx.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVbml0c1xVbml0SWR4LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Weather.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xXZWF0aGVyLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Routes.razor]

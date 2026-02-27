@@ -145,7 +145,7 @@ namespace Blackout.Models.Services
         public async Task<Product?> GetProductByIdAsync(int id)
         {
             using var dbc = await contextFactory.CreateDbContextAsync();
-            return await dbc.Products.Where(x => x.ProductID == id).FirstOrDefaultAsync();
+            return await dbc.Products.Where(x => x.ProductID == id).Include(x => x.Lots).FirstOrDefaultAsync();
         }
 
         public async Task<Unit?> GetUnitByIdAsync(string id)

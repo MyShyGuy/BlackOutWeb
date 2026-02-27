@@ -11,12 +11,17 @@
 }
 else
 {
+    @if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="alert alert-danger">@errorMessage</div>
+    }
     <p>Are you sure you want to delete product with ID: @product.ProductID and title: @product.Title?</p>
     <button class="btn btn-danger" @onclick="DeleteProduct">Delete</button>
     <button class="btn btn-secondary" @onclick="@(() => NavMan.NavigateTo("/products"))">Cancel</button>
 }
 
 @code {
+    string? errorMessage;
     [Parameter]
     public int ProductID { get; set; }
 
@@ -29,10 +34,18 @@ else
 
     private async Task DeleteProduct()
     {
-        if (product != null)
+        if(product.Lots == null || product.Lots.Count == 0)
         {
-            await blService.DeleteProductAsync(product.ProductID);
-            NavMan.NavigateTo("/products");
+            if (product != null)
+            {
+                await blService.DeleteProductAsync(product.ProductID);
+                NavMan.NavigateTo("/products");
+            }
+        }
+        else
+        {
+            errorMessage = "Cannot delete product because there are existing lots associated with it. Please delete the lots first.";
+            // Show an error message or handle the case where the product cannot be deleted due to existing lots
         }
     }
 }

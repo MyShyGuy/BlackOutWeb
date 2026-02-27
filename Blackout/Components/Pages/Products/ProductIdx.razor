@@ -1,42 +1,12 @@
 @page "/products"
+@using Blackout.Components.Pages.Components
 @inject IBLService blService;
 @inject NavigationManager NavMan;
 
 <h3>Product Overview</h3>
 <a href="/products/create" class="btn btn-primary mb-3">Create New Product</a>
 
-@if (Products == null || Products.Count == 0)
-{
-    <p>No products found.</p>
-}
-else
-{
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Title</th>
-                <th>EAN</th>
-                <th>Unit</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var product in Products)
-            {
-                <tr>
-                    <td>@product.ProductID</td>
-                    <td>@product.Title</td>
-                    <td>@product.EAN</td>
-                    <td>@product.UnitID</td>
-                    <td><a href="/products/edit/@product.ProductID" class="btn btn-secondary">Edit</a></td>
-                    <td><a href="#" @onclick="@(() => NavMan.NavigateTo($"/products/delete/{product.ProductID}"))" class="btn btn-danger">Delete</a></td>
-                </tr>
-            }
-        </tbody>
-    </table>
-}
+    <ProductList Products="Products" />
 
 @code {
     public List<Product> Products { get; set; } = new List<Product>();
@@ -44,12 +14,5 @@ else
     protected override async Task OnInitializedAsync()
     {
         Products = await blService.GetAllProductsAsync();
-    }
-
-    async Task DeleteProduct(int id)
-    {
-        await blService.DeleteProductAsync(id);
-        Products = await blService.GetAllProductsAsync();
-        StateHasChanged();
     }
 }

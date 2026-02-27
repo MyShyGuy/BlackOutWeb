@@ -70,7 +70,8 @@ else
         ProductID = 0,
         Amount = 0,
         Location = string.Empty,
-        EntryDate = DateTime.Now
+        EntryDate = DateTime.Now,
+        ExpiryDate = DateTime.Now.AddDays(1)
     };
 
     private string selectedUnit = string.Empty;
