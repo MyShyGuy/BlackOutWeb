@@ -58,3 +58,25 @@ h1:focus {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
     text-align: start;
 }
+
+/* Make lists and tables 50% transparent globally */
+table, .table, ul, ol {
+    opacity: 0.8 !important;
+}
+
+/* Rounded corners for tables and ensure content is clipped to radius */
+table, .table {
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+}
+
+/* Make sure header and cells respect the rounded corners */
+.table thead tr, .table tbody tr {
+    background-clip: padding-box;
+}
+
+.table th, .table td {
+    background-clip: padding-box;
+}

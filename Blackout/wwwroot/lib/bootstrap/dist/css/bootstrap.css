@@ -12055,3 +12055,25 @@ textarea.form-control-lg {
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
+
+/* === Project overrides: tables/lists opacity and rounded table corners === */
+/* Make lists and tables 50% transparent globally */
+table, .table, ul, ol {
+  opacity: 0.5 !important;
+}
+
+/* Rounded corners for tables and ensure content is clipped to radius */
+table, .table {
+  border-collapse: separate !important;
+  border-spacing: 0;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+/* Ensure cells respect the rounding */
+.table thead tr, .table tbody tr,
+.table th, .table td {
+  background-clip: padding-box;
+}
+
+/* end overrides */
