@@ -6,12 +6,9 @@
 
 <h3>Create New Unit</h3>
 
-<UnitForm UnitID="@UnitID" OnSave="CreateUnit"/>
+<UnitForm OnSave="CreateUnit"/>
 
 @code {
-    [Parameter]
-    public string? UnitID { get; set; } = string.Empty;
-
     // parent no longer keeps its own Unit instance; it receives
     // the filled object from the child via the OnSave callback.
     public string errorMessage { get; set; } = string.Empty;

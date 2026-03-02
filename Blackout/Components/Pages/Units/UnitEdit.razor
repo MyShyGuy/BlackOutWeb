@@ -8,19 +8,34 @@
 
 <h3>Edit Unit</h3>
 
-<UnitForm UnitID="@UnitID" OnSave="UpdateUnit"/>
+@if(unit == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+    <UnitForm Unit="@unit" OnSave="UpdateUnit"/>
+}
+
 
 @code {
     [Parameter]
     public string? UnitID { get; set; }
-
-    // for edit we rely on the form fetching the existing unit by
-    // UnitID and then returning it on save via the callback.
+    public Unit? unit { get; set; }
     public string errorMessage { get; set; } = string.Empty;
 
     private async Task UpdateUnit(Unit unit)
     {
         await blService.UpdateUnitAsync(unit);
         NavMan.NavigateTo("/units/" + unit.UnitID);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!string.IsNullOrEmpty(UnitID))
+        {
+            unit = await blService.GetUnitByIdAsync(UnitID);
+        }
+
     }
 }

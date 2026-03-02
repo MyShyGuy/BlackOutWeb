@@ -1,10 +1,14 @@
-@inject IBLService blService;
-@inject NavigationManager NavMan;
 @using Microsoft.IdentityModel.Tokens
 
-<div class="row">
+@if(unit == null)
+{
+    <p>Loading...</p>
+}
+else
+{
+   <div class="row">
     <div class="col-md-4">
-        <EditForm Model="@newUnit" OnValidSubmit="HandleSubmit" FormName="UnitForm">
+        <EditForm Model="@unit" OnValidSubmit="HandleSubmit" FormName="UnitForm">
             <DataAnnotationsValidator />
             @if(!errorMessage.IsNullOrEmpty())
             {
@@ -13,36 +17,36 @@
             </div>
             }
 
-
             <div class="mb-3">
                 <label class="form-label">Unit ID</label>
-                @if(string.IsNullOrEmpty(UnitID))
+                @if(string.IsNullOrEmpty(unit.UnitID))
                 {
-                    <InputText class="form-control" @bind-Value="newUnit.UnitID" />
+                    <InputText class="form-control" @bind-Value="unit.UnitID" />
                 }
                 else
                 {
-                    <InputText readonly class="form-control" @bind-Value="newUnit.UnitID" />
+                    <InputText readonly class="form-control" @bind-Value="unit.UnitID" />
                 }
-                <ValidationMessage For="@(() => newUnit.UnitID)" />
+                <ValidationMessage For="@(() => unit.UnitID)" />
             </div>
 
             <div class="mb-3">
                 <label class="form-label">Unit Notes</label>
-                <InputText class="form-control" @bind-Value="newUnit.Notes" />
-                <ValidationMessage For="@(() => newUnit.Notes)" />
+                <InputText class="form-control" @bind-Value="unit.Notes" />
+                <ValidationMessage For="@(() => unit.Notes)" />
             </div>
 
             <button type="submit" class="btn btn-primary">Submit</button>
         </EditForm>
     </div>
 </div>
+}
 
 
 
 @code {
     [Parameter]
-    public string? UnitID { get; set; } = string.Empty;
+    public Unit unit { get; set; } = new Unit(); // initialize to avoid null reference; parent will overwrite for edit.
 
     [Parameter]
     public EventCallback<Unit> OnSave { get; set; }
@@ -53,35 +57,10 @@
     // second, disconnected object and keeps the two-way binding
     // straightforward.  The parent will pass an empty unit for a
     // create page or an existing one for edit.
-
-    [Parameter]
-    public Unit newUnit { get; set; } = new Unit();
     public string errorMessage { get; set; } = string.Empty;
-    
-    @* private async Task CreateOrUpdateUnit()
-    {
-        await blService.AddUnitAsync(newUnit);
-        await blService.UpdateUnitAsync(newUnit);
-        NavMan.NavigateTo("/units/" + newUnit.UnitID);
-    } *@
-    
     private async Task HandleSubmit()
     {
         //Event an parent senden
-        await OnSave.InvokeAsync(newUnit);
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-
-        if (!string.IsNullOrEmpty(UnitID))
-        {
-            Unit? unit = await blService.GetUnitByIdAsync(UnitID);
-
-            if (unit != null)
-            {
-                newUnit = unit;
-            }
-        }
+        await OnSave.InvokeAsync(unit);
     }
 }
