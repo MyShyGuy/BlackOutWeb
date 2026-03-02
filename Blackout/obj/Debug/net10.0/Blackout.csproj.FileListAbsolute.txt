@@ -148,6 +148,7 @@ C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Info
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\Components\Layout\MainLayout.razor.rz.scp.css
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\Components\Layout\NavMenu.razor.rz.scp.css
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\Components\Layout\ReconnectModal.razor.rz.scp.css
+C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\Components\Pages\Home.razor.rz.scp.css
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\bundle\Blackout.styles.css
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\scopedcss\projectbundle\Blackout.bundle.scp.css
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\p22edipgp0-{0}-alg575uk1e-alg575uk1e.gz
@@ -198,8 +199,8 @@ C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Info
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\3a2mdiv7kq-{0}-abdmv1u4y3-abdmv1u4y3.gz
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\ilqdjawplt-{0}-ax6tuj8tun-ax6tuj8tun.gz
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\ykppwbwfv7-{0}-zr4b1gdhaw-zr4b1gdhaw.gz
-C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\a8e9ptwyh4-{0}-71nca68iyy-71nca68iyy.gz
-C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\6c3ep11vqw-{0}-71nca68iyy-71nca68iyy.gz
+C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\a8e9ptwyh4-{0}-ayfyj47tyr-ayfyj47tyr.gz
+C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\compressed\6c3ep11vqw-{0}-ayfyj47tyr-ayfyj47tyr.gz
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\staticwebassets.build.json
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\staticwebassets.build.json.cache
 C:\Users\matthias.schober\OneDrive - uat.at\Dokumente\Lehre\Schule_Klasse_4\Informatik\BlackOutWeb\Blackout\obj\Debug\net10.0\staticwebassets.development.json

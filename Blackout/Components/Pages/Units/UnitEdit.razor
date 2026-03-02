@@ -1,77 +1,26 @@
 @page  "/units/edit/{UnitID}"
 @inject IBLService blService;
 @inject NavigationManager NavMan;
+@using Blackout.Components.Pages.Components
 @using Blackout.Models;
 @using Microsoft.IdentityModel.Tokens
 @using Microsoft.VisualBasic
 
-<h3>Create New Unit</h3>
+<h3>Edit Unit</h3>
 
-<div class="row">
-    <div class="col-md-4">
-        <EditForm method="post" Model="@newUnit" OnValidSubmit="UpdateUnit" FormName="createUnitForm">
-            <DataAnnotationsValidator />
-            <ValidationSummary />
-            @if(!errorMessage.IsNullOrEmpty())
-            {
-            <div class="mb-3">
-                <label class="text-danger">@errorMessage</label>
-            </div>
-            }
-
-            <div class="mb-3">
-                <label class="form-label">Unit ID</label>
-                <InputText readonly class="form-control" @bind-Value="newUnit.UnitID" />
-                <ValidationMessage For="@(() => newUnit.UnitID)" />
-            </div>
-
-            <div class="mb-3">
-                <label class="form-label">Unit Notes</label>
-                <InputText class="form-control" @bind-Value="newUnit.Notes" />
-                <ValidationMessage For="@(() => newUnit.Notes)" />
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-        </EditForm>
-    </div>
-</div>
-
-
+<UnitForm UnitID="@UnitID" OnSave="UpdateUnit"/>
 
 @code {
     [Parameter]
     public string? UnitID { get; set; }
-    private string? oldUnitID; 
 
-    [SupplyParameterFromForm]
-    public Unit? newUnit { get; set; } = new Unit();
+    // for edit we rely on the form fetching the existing unit by
+    // UnitID and then returning it on save via the callback.
     public string errorMessage { get; set; } = string.Empty;
-    private async Task UpdateUnit()
+
+    private async Task UpdateUnit(Unit unit)
     {
-        await blService.UpdateUnitAsync(newUnit);
-        NavMan.NavigateTo("/units/" + newUnit.UnitID);
-    }
-
-    protected override async Task OnParametersSetAsync()
-    {
-        oldUnitID = UnitID;
-
-        if (!string.IsNullOrEmpty(UnitID))
-        {
-            Unit? unit = await blService.GetUnitByIdAsync(UnitID);
-
-            if (unit != null)
-            {
-                newUnit = unit;
-            }
-            else
-            {
-                errorMessage = "Unit not found.";
-            }
-        }
-        else
-        {
-            errorMessage = "Invalid Unit ID.";
-        }
+        await blService.UpdateUnitAsync(unit);
+        NavMan.NavigateTo("/units/" + unit.UnitID);
     }
 }

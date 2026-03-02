@@ -38,12 +38,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb21wb25lbnRzXFByb2R1Y3RMaXN0LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Error.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Components/UnitForm.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xDb21wb25lbnRzXFVuaXRGb3JtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Home.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Error.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xFcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Lots/LotCreate.razor]
@@ -82,6 +82,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xQcm9kdWN0c1xQcm9kdWN0SWR4LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Settings/Settings.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xTZXR0aW5nc1xTZXR0aW5ncy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Units/UnitCreate.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xVbml0c1xVbml0Q3JlYXRlLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
@@ -117,3 +121,7 @@ build_metadata.AdditionalFiles.CssScope = b-ksrfv9z1pv
 [C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Layout/ReconnectModal.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xMYXlvdXRcUmVjb25uZWN0TW9kYWwucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-q3qhg58m82
+
+[C:/Users/matthias.schober/OneDrive - uat.at/Dokumente/Lehre/Schule_Klasse_4/Informatik/BlackOutWeb/Blackout/Components/Pages/Home.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xQYWdlc1xIb21lLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-jlpfttnm45

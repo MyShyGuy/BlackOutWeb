@@ -28,7 +28,7 @@
         <a href="/lots" class="card card-link card-warning text-center text-decoration-none">
             <div class="card-body">
                 <h5 class="card-title">Expiring Lots (@expiringSoon.Count())</h5>
-                <p class="card-text">Innerhalb der n�chsten @expiringDays Tagen</p>
+                <p class="card-text">Innerhalb der nächsten @expiringDays Tagen</p>
             </div>
         </a>
     </div>
@@ -52,7 +52,7 @@
                 <tbody>
                     @foreach (var l in expired)
                     {
-                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
+                        <tr class="table-row-link" @onclick="@(() => NavigateToLotIdx(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -83,7 +83,7 @@
                 <tbody>
                     @foreach (var l in expiringSoon)
                     {
-                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
+                        <tr class="table-row-link" @onclick="@(() => NavigateToLotIdx(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -114,7 +114,7 @@
                 <tbody>
                     @foreach (var l in longTerm)
                     {
-                        <tr class="table-row-link" @onclick="@(() => NavigateToEditLot(l.LotID))">
+                        <tr class="table-row-link" @onclick="@(() => NavigateToLotIdx(l.LotID))">
                             <td>@l.LotID</td>
                             <td>@l.Product?.Title</td>
                             <td>@l.ExpiryDate.ToShortDateString()</td>
@@ -127,55 +127,6 @@
     </div>
 }
 
-<style>
-    .dashboard-tiles .card-link { 
-        min-height: 110px; 
-        display:flex; 
-        align-items:center; 
-        justify-content:center;
-        transition: all 0.3s ease;
-        border: none;
-        color: white !important;
-        font-weight: 600;
-    }
-    
-    .dashboard-tiles .card-primary {
-        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-    }
-    
-    .dashboard-tiles .card-success {
-        background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
-    }
-    
-    .dashboard-tiles .card-warning {
-        background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
-        color: #333 !important;
-    }
-    
-    .dashboard-tiles .card-link:hover {
-        transform: translateY(-4px) scale(1.02);
-        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        filter: brightness(1.1);
-    }
-    
-    .dashboard-tiles .card-link .display-6 { margin:0; }
-    .card-header { font-weight:600; }
-    
-    .table-row-link {
-        cursor: pointer;
-        transition: all 0.15s ease;
-    }
-    .table-row-link:hover {
-        background-color: #d1ecf1 !important;
-        font-weight: 500;
-        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
-    }
-    
-    @@media (min-width: 768px) {
-        .dashboard-tiles .col-md-4 { display:flex; }
-        .dashboard-tiles .col-md-4 .card-link { flex:1; }
-    }
-</style>
 
 @code {
     private List<Lot> Lots { get; set; } = new List<Lot>();
@@ -187,7 +138,7 @@
     private int totalLots = 0;
     private int expiringDays = 7;
 
-    private void NavigateToEditLot(int lotId)
+    private void NavigateToLotIdx(int lotId)
     {
         NavMan.NavigateTo($"/lots/{lotId}");
     }

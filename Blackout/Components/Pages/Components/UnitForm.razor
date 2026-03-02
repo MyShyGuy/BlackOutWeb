@@ -1,0 +1,87 @@
+@inject IBLService blService;
+@inject NavigationManager NavMan;
+@using Microsoft.IdentityModel.Tokens
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="@newUnit" OnValidSubmit="HandleSubmit" FormName="UnitForm">
+            <DataAnnotationsValidator />
+            @if(!errorMessage.IsNullOrEmpty())
+            {
+            <div class="mb-3">
+                <label class="text-danger">@errorMessage</label>
+            </div>
+            }
+
+
+            <div class="mb-3">
+                <label class="form-label">Unit ID</label>
+                @if(string.IsNullOrEmpty(UnitID))
+                {
+                    <InputText class="form-control" @bind-Value="newUnit.UnitID" />
+                }
+                else
+                {
+                    <InputText readonly class="form-control" @bind-Value="newUnit.UnitID" />
+                }
+                <ValidationMessage For="@(() => newUnit.UnitID)" />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Unit Notes</label>
+                <InputText class="form-control" @bind-Value="newUnit.Notes" />
+                <ValidationMessage For="@(() => newUnit.Notes)" />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </EditForm>
+    </div>
+</div>
+
+
+
+@code {
+    [Parameter]
+    public string? UnitID { get; set; } = string.Empty;
+
+    [Parameter]
+    public EventCallback<Unit> OnSave { get; set; }
+
+    //[SupplyParameterFromForm]  // this is not needed and actually causes problems.
+    // the form operates on a unit instance that is supplied by the
+    // parent component.  Removing SupplyParameterFromForm avoids a
+    // second, disconnected object and keeps the two-way binding
+    // straightforward.  The parent will pass an empty unit for a
+    // create page or an existing one for edit.
+
+    [Parameter]
+    public Unit newUnit { get; set; } = new Unit();
+    public string errorMessage { get; set; } = string.Empty;
+    
+    @* private async Task CreateOrUpdateUnit()
+    {
+        await blService.AddUnitAsync(newUnit);
+        await blService.UpdateUnitAsync(newUnit);
+        NavMan.NavigateTo("/units/" + newUnit.UnitID);
+    } *@
+    
+    private async Task HandleSubmit()
+    {
+        //Event an parent senden
+        await OnSave.InvokeAsync(newUnit);
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+
+        if (!string.IsNullOrEmpty(UnitID))
+        {
+            Unit? unit = await blService.GetUnitByIdAsync(UnitID);
+
+            if (unit != null)
+            {
+                newUnit = unit;
+            }
+        }
+    }
+}
